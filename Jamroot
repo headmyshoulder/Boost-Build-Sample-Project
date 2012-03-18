@@ -1,0 +1,24 @@
+import os ;
+import modules ;
+import path ;
+import boost ;
+
+boost.use-project ;
+
+path-constant TOP : . ;
+
+
+project sample_project
+    : requirements
+	  <include>$(TOP)
+	  <library>/boost//headers
+;
+
+alias lib1 : ./libs/lib1//lib1 ;
+alias lib2 : ./libs/lib2//lib2 ;
+
+
+# Projects to be build when bjam is invoked from within the Jamroot directory:
+build-project ./libs/lib1 ;
+build-project ./libs/lib2 ;
+build-project ./apps ;
